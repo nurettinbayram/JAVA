@@ -1,7 +1,6 @@
+// 📌 Hastane Bölümleri için Interface
 public interface IHastaneBolumu {
-
-
-    void hastaKabulEt(String hastaAdi);
-
-    void hastaTaburcuEt(String hastaAdi);
+    void hastaKabulEt(String hastaAdi, boolean oncelikli);
+    void hastaTaburcuEt();
+    void beklemeListesiGoster();
 }

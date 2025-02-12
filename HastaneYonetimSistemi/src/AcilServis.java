@@ -1,24 +1,28 @@
-public class AcilServis extends HastaneBolumu implements  IHastaneBolumu {
-    boolean oncelikliHastaVarmi;
+import java.util.LinkedList;
 
-    public AcilServis(String bolumAdi) {
+public class AcilServis extends HastaneBolumu {
+    public AcilServis() {
         super("Acil Servis");
     }
 
-    public void hastaKabulEt(String hastaAdi){
-
-    }
-
-    public void hastaTaburcuEt(String hastaAdi){
-
-    }
-
-    public void oncelikliMudahale(){
-
+    @Override
+    public void hastaKabulEt(String hastaAdi, boolean oncelikli) {
+        if (oncelikli) {
+            ((LinkedList<String>) beklemeListesi).addFirst(hastaAdi);
+            System.out.println(hastaAdi + " öncelikli hasta olarak ACİL SERVİSE eklendi.");
+        } else {
+            beklemeListesi.add(hastaAdi);
+            System.out.println(hastaAdi + " ACİL SERVİSE kabul edildi.");
+        }
     }
 
     @Override
-    void bolumBilgisi() {
-        System.out.println(bolumAdi);
+    public void hastaTaburcuEt() {
+        if (!beklemeListesi.isEmpty()) {
+            String hasta = beklemeListesi.poll();
+            System.out.println(hasta + " ACİL SERVİSTEN taburcu edildi.");
+        } else {
+            System.out.println("Acil serviste bekleyen hasta yok.");
+        }
     }
 }

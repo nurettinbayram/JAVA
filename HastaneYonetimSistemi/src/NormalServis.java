@@ -1,26 +1,21 @@
-public class NormalServis extends HastaneBolumu implements IHastaneBolumu{
-    int yatakSayisi;
-
-    public NormalServis(String bolumAdi) {
+public class NormalServis extends HastaneBolumu {
+    public NormalServis() {
         super("Normal Servis");
     }
 
     @Override
-    public void hastaKabulEt(String hastaAdi) {
-
+    public void hastaKabulEt(String hastaAdi, boolean oncelikli) {
+        beklemeListesi.add(hastaAdi);
+        System.out.println(hastaAdi + " NORMAL SERVİS için sıraya alındı.");
     }
 
     @Override
-    public void hastaTaburcuEt(String hastaAdi) {
-
-    }
-
-    public void yatakDurumuGoster(){
-
-    }
-
-    @Override
-    void bolumBilgisi() {
-        System.out.println(bolumAdi);
+    public void hastaTaburcuEt() {
+        if (!beklemeListesi.isEmpty()) {
+            String hasta = beklemeListesi.poll();
+            System.out.println(hasta + " NORMAL SERVİS'ten taburcu edildi.");
+        } else {
+            System.out.println("Normal serviste bekleyen hasta yok.");
+        }
     }
 }
